@@ -8,43 +8,48 @@ Implementar un sistema simple de "deshacer" utilizando dos pilas, una para las a
 
 class SistemaDeshacer:
     def __init__(self):
-        self.acciones = []
-        self.deshacer = []
+        self.acciones = []                                            # Lista para almacenar las acciones realizadas
+        self.deshacer = []                                            # Lista para almacenar las acciones deshechas
 
     def hacer(self, accion):
-        self.acciones.append(accion)
-        # Cuando se realiza una nueva acción, la pila de deshacer se reinicia
-        self.deshacer = []
+        self.acciones.append(accion)                                  # Agrega la acción a la lista de acciones realizadas
+        self.deshacer = []                                            # Cuando se realiza una nueva acción, la lista de acciones deshechas se reinicia
 
     def deshacer_accion(self):
-        if self.acciones:
-            accion_deshacer = self.acciones.pop()
-            self.deshacer.append(accion_deshacer)
-            print("Deshaciendo:", accion_deshacer)
+        if self.acciones:                                             # Verifica si hay acciones para deshacer
+            accion_deshacer = self.acciones.pop()                     # Extrae la última acción realizada
+            self.deshacer.append(accion_deshacer)                     # Agrega la acción a la lista de acciones deshechas
+            print("Deshaciendo:", accion_deshacer)                    # Imprime la acción que se está deshaciendo
         else:
-            print("No hay acciones para deshacer")
+            print("No hay acciones para deshacer")                    # Imprime un mensaje si no hay acciones para deshacer
 
     def rehacer_accion(self):
-        if self.deshacer:
-            accion_rehacer = self.deshacer.pop()
-            self.acciones.append(accion_rehacer)
-            print("Rehaciendo:", accion_rehacer)
+        if self.deshacer:                                             # Verifica si hay acciones para rehacer
+            accion_rehacer = self.deshacer.pop()                      # Extrae la última acción deshecha
+            self.acciones.append(accion_rehacer)                      # Agrega la acción de vuelta a la lista de acciones realizadas
+            print("Rehaciendo:", accion_rehacer)                      # Imprime la acción que se está rehaciendo
         else:
-            print("No hay acciones para rehacer")
+            print("No hay acciones para rehacer")                     # Imprime un mensaje si no hay acciones para rehacer
 
-# Ejemplo de uso
-sistema = SistemaDeshacer()
+sistema = SistemaDeshacer()                                           # Instancia un objeto de la clase SistemaDeshacer
 
-# Realizar algunas acciones
 sistema.hacer("Editar texto")
-sistema.hacer("Guardar archivo")
+sistema.hacer("Guardar archivo")                                      # Realizar algunas acciones
 sistema.hacer("Cerrar sesión")
 
-# Deshacer una acción
-sistema.deshacer_accion()
+sistema.deshacer_accion()                                             # Deshacer una acción
 
-# Deshacer otra acción
-sistema.deshacer_accion()
+sistema.deshacer_accion()                                             # Deshacer otra acción
 
-# Rehacer una acción
-sistema.rehacer_accion()
+sistema.rehacer_accion()                                              # Rehacer una acción
+
+
+
+"""
+LA IMPRESIÓN FINAL SERÁ:
+
+Deshaciendo: Cerrar sesión
+Deshaciendo: Guardar archivo
+Rehaciendo: Guardar archivo
+
+"""
